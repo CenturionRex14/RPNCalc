@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPNCalc", "RPNCalc\RPNCalc.csproj", "{EDDF600D-F920-4FED-AF98-CE09C9305590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPNCalcCLI", "RPNCalc\RPNCalcCLI.csproj", "{EDDF600D-F920-4FED-AF98-CE09C9305590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPNCalcLib", "RPNCalcLib\RPNCalcLib.csproj", "{6EC6E452-80E0-4F56-A7EA-8CBFA0D1559D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPNCalcTest", "RPNCalcTest\RPNCalcTest.csproj", "{2DE2F514-5B14-49CF-BAFB-1112B5114FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EDDF600D-F920-4FED-AF98-CE09C9305590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDDF600D-F920-4FED-AF98-CE09C9305590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDDF600D-F920-4FED-AF98-CE09C9305590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC6E452-80E0-4F56-A7EA-8CBFA0D1559D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC6E452-80E0-4F56-A7EA-8CBFA0D1559D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC6E452-80E0-4F56-A7EA-8CBFA0D1559D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC6E452-80E0-4F56-A7EA-8CBFA0D1559D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE2F514-5B14-49CF-BAFB-1112B5114FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE2F514-5B14-49CF-BAFB-1112B5114FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE2F514-5B14-49CF-BAFB-1112B5114FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE2F514-5B14-49CF-BAFB-1112B5114FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
