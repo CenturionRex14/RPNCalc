@@ -271,12 +271,16 @@ namespace RPNCalcTest
                 return;
             }
 
+            //Running test
+            double running;
             calc.Push(a).Push(b).Modulo();
-            Assert.AreEqual(a % b, calc.X);
+            running = a % b;
+            Assert.AreEqual(running, calc.X);
             Assert.AreEqual(0, calc.Y);
 
             calc.Push(a).Modulo();
-            Assert.AreEqual((a % b) % a, calc.X);
+            running %= a;
+            Assert.AreEqual(running, calc.X);
             Assert.AreEqual(0, calc.Y);
 
             calc.Modulo();

@@ -29,6 +29,7 @@ namespace RPNCalcLib
         protected List<double> stack = new();
         protected double mem = 0;
 
+        //TODO: Implement getters and setters for properies
         public double X => (stack.Count > 0) ? stack[^1] : 0;
         public double Y => (stack.Count > 1) ? stack[^2] : 0;
 
@@ -38,7 +39,7 @@ namespace RPNCalcLib
             return this;
         }
 
-        public double Drop()
+        public double Drop() //TODO: Add an output param
         {
             double rtn = 0;
             if (stack.Count > 0)
@@ -127,7 +128,23 @@ namespace RPNCalcLib
 
         public RPNCalc Modulo()
         {
-            throw new NotImplementedException();
+            if (stack.Count > 1)
+            {
+                if (stack[^1] != 0 && stack[^2] != 0) //Both non-zero values
+                {
+                    double temp = Drop();
+                    stack[^1] = stack[^1] % temp;
+                }
+                else
+                {
+                    Clear();
+                }
+            }
+            else
+            {
+                Clear();
+            }
+            return this;
         }
 
         public void SaveMem(double n)
