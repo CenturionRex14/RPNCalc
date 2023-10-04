@@ -128,21 +128,14 @@ namespace RPNCalcLib
 
         public RPNCalc Modulo()
         {
-            if (stack.Count > 1)
+            if (stack.Count < 2 || stack[^1] == 0 || stack[^2] == 0)
             {
-                if (stack[^1] != 0 && stack[^2] != 0) //Both non-zero values
-                {
-                    double temp = Drop();
-                    stack[^1] = stack[^1] % temp;
-                }
-                else
-                {
-                    Clear();
-                }
+                Clear();
             }
             else
             {
-                Clear();
+                double temp = Drop();
+                stack[^1] = stack[^1] % temp;
             }
             return this;
         }
