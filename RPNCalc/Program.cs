@@ -29,6 +29,7 @@ L - takes place of memory in operation, e.g.:
 >
 */
 var calc = new RPNCalc();
+
 Dictionary<char, Action> operators = new();
 operators.Add('+', () =>
 {
@@ -89,3 +90,54 @@ operators.Add('L', () =>
 {
     throw new NotImplementedException();
 });
+
+string temp = "";
+bool hasDecimal = false;
+void GetConsole()
+{
+    char c = (char)Console.Read();
+    /*
+     * Check if input is:
+     * - number
+     * - period
+     * - operator
+     * - <Enter>
+     * - invlaid
+     */
+    if (char.IsNumber(c))
+    {
+        temp += c; //BUG: input being added twice
+    }
+    else if (c == '.')
+    {
+        if (hasDecimal)
+        {
+            throw new Exception("Invalid number.");
+        }
+        hasDecimal = true;
+        temp += c;
+    }
+    else if (operators.ContainsKey(c))
+    {
+        operators[c]();
+    }
+    else if (c == '\n') //BUG: need to check if no operator used to push number into reg
+    {
+        PutConsole();
+    }
+    else if (c != '\r')
+    {
+        throw new Exception("oopsie invalid operator teehee");
+    }
+}
+
+void PutConsole()
+{
+    Console.Write($"y = {calc.Y}\n");
+    Console.Write($"x = {calc.X}\n");
+}
+
+while (true)
+{
+    GetConsole();
+}
