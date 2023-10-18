@@ -30,8 +30,29 @@ namespace RPNCalcLib
         protected double mem = 0;
 
         //TODO: Implement getters and setters for properies
-        public double X => (stack.Count > 0) ? stack[^1] : 0;
-        public double Y => (stack.Count > 1) ? stack[^2] : 0;
+        public double X
+        {
+            get => (stack.Count > 0) ? stack[^1] : 0;
+            protected set
+            {
+                if (stack.Count < 1)
+                {
+                    stack.Add(value);
+                }
+                else
+                {
+                    stack[^1] = value;
+                }
+            }
+        }
+        public double Y
+        {
+            get => (stack.Count > 1) ? stack[^2] : 0;
+            set
+            {
+
+            }
+        }
 
         public RPNCalc Push(double num)
         {
@@ -39,7 +60,7 @@ namespace RPNCalcLib
             return this;
         }
 
-        public double Drop() //TODO: Add an output param
+        public double Drop()
         {
             double rtn = 0;
             if (stack.Count > 0)
@@ -56,10 +77,10 @@ namespace RPNCalcLib
             double b = 0;
             if (stack.Count > 1)
             {
-                a = stack[^1];
-                b = stack[^2];
-                stack[^1] = b;
-                stack[^2] = a;
+                a = X;
+                b = Y;
+                X = b;
+                Y = a;
             }
             else if (stack.Count == 1)
             {
@@ -98,7 +119,7 @@ namespace RPNCalcLib
             }
             else
             {
-                stack.Add(-1*temp);
+                stack.Add(-1 * temp);
             }
             return this;
         }
@@ -119,7 +140,8 @@ namespace RPNCalcLib
             if (stack.Count > 0 && temp != 0)
             {
                 stack[^1] = stack[^1] / temp;
-            } else if (temp == 0)
+            }
+            else if (temp == 0)
             {
                 throw new DivideByZeroException();
             }
@@ -140,19 +162,27 @@ namespace RPNCalcLib
             return this;
         }
 
-        public void SaveMem(double n)
+        public RPNCalc SaveMem()
         {
-            throw new NotImplementedException();
+            if (stack.Count == 0)
+            {
+                mem = 0;
+            }
+            else
+            {
+                mem = stack[^1];
+            }
+            return this;
         }
 
         public void EraseMem()
         {
-            throw new NotImplementedException();
+            mem = 0;
         }
 
         public double Mem()
         {
-            throw new NotImplementedException();
+            return mem;
         }
     }
 }

@@ -271,7 +271,7 @@ namespace RPNCalcTest
                 return;
             }
 
-            //Running test
+            //Continuous test
             double running;
             calc.Push(a).Push(b).Modulo();
             running = a % b;
@@ -286,6 +286,36 @@ namespace RPNCalcTest
             calc.Modulo();
             Assert.AreEqual(0, calc.X);
             Assert.AreEqual(0, calc.Y);
+        }
+
+        [TestMethod]
+        [DataRow(0, 0)]
+        [DataRow(0, 2)]
+        [DataRow(3, 0)]
+        [DataRow(1, -2)]
+        [DataRow(-3, 4)]
+        [DataRow(double.MaxValue, double.MinValue)]
+        [DataRow(double.MinValue, double.MaxValue)]
+        [DataRow(double.MaxValue, double.MaxValue)]
+        [DataRow(double.MinValue, double.MinValue)]
+        public void TestMem(double a, double b)
+        {
+            var calc = new RPNCalc();
+
+            calc.Push(a).SaveMem();
+            Assert.AreEqual(a, calc.Mem());
+
+            calc.Push(b);
+            Assert.AreEqual(a, calc.Mem());
+
+            calc.SaveMem();
+            Assert.AreEqual(b, calc.Mem());
+
+            calc.Clear();
+            Assert.AreEqual(b, calc.Mem());
+
+            calc.EraseMem();
+            Assert.AreEqual(0, calc.Mem());
         }
     }
 }

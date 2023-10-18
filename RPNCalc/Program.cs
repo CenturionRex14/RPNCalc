@@ -1,8 +1,11 @@
-﻿/**
- * Two Register RPN calculator
+﻿
+using RPNCalcLib;
+/**
+using System.Diagnostics.Metrics;
+using System;
 
 Supported operations:
-+ - Adds X and Y
++-Adds X and Y
 - - Subtracts X from Y
 / - Divides Y by X
 * - Multiplies Y by X
@@ -19,26 +22,70 @@ M - Saves X into memory
 V - Prints value in memory
 E - Erases memory (set to 0)
 L - takes place of memory in operation, e.g.:
-    >5M (stores 5 into memory)
-    >6<enter>
-    >L*
-    30
-    >
-
-Interface:
-Show a `>` symbol to indicate prompt
-print the answer directly
-Enter any digit to push onto the stack
-Enter a operator symbol/letter to perform operation
-If it is a two register operation and Y is empty, show error
-Entering a operation immediately ends input, e.g. to get 30:
-    >5<Enter>
-    y = 0
-    x = 5
-    >6*
-    y = 0
-    x = 30
-    ><Enter>
-    y = 30
-    x = 30
- */
+> 5M(stores 5 into memory)
+> 6 < enter >
+> L *
+30
+>
+*/
+var calc = new RPNCalc();
+Dictionary<char, Action> operators = new();
+operators.Add('+', () =>
+{
+    calc.Add();
+});
+operators.Add('-', () =>
+{
+    calc.Subtract();
+});
+operators.Add('/', () =>
+{
+    calc.Divide();
+});
+operators.Add('*', () =>
+{
+    calc.Multiply();
+});
+operators.Add('%', () =>
+{
+    calc.Modulo();
+});
+operators.Add('D', () =>
+{
+    calc.Drop();
+});
+operators.Add('S', () =>
+{
+    calc.Swap();
+});
+operators.Add('R', () =>
+{
+    double x = calc.X;
+    double y = calc.Y;
+    throw new NotImplementedException();
+});
+operators.Add('C', () =>
+{
+    calc.Clear();
+});
+operators.Add('P', () =>
+{
+    calc.Push(0);
+});
+operators.Add('M', () =>
+{
+    calc.SaveMem();
+});
+operators.Add('V', () =>
+{
+    double m = calc.Mem();
+    throw new NotImplementedException();
+});
+operators.Add('E', () =>
+{
+    throw new NotImplementedException();
+});
+operators.Add('L', () =>
+{
+    throw new NotImplementedException();
+});
