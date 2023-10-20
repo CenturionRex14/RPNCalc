@@ -119,18 +119,34 @@ void GetConsole()
     }
     else if (operators.ContainsKey(c))
     {
-        operators[c]();
+        Push();
+        try
+        {
+            operators[c]();
+        }catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
     else if (c == '\n') //BUG: need to check if no operator used to push number into reg
     {
+        Push();
         PutConsole();
     }
     else if (c != '\r')
     {
-        throw new Exception("oopsie invalid operator teehee");
+        Console.Write("oopsie invalid operator teehee\n");
     }
 }
 
+void Push()
+{
+    if (!string.IsNullOrEmpty(temp))
+    {
+        calc.Push(double.Parse(temp));
+        temp = "";
+    }
+}
 void PutConsole()
 {
     Console.Write($"y = {calc.Y}\n");
